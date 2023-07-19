@@ -1,0 +1,5 @@
+-> for negative edge work
+-> can find negative cycle
+-> if number of node is n then (n-1) iterations will need for relax all node
+-> if after n-1 iterations cost of the node is again change that means there is a negatiove cycle
+-> 

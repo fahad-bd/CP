@@ -1,0 +1,26 @@
+Bellman ford
+
+Input -> A weighted graph & a src node (with no negative cycles)
+Output -> Shortest distance from src node to all other nodes
+
+- create a distance array "d" with all values to infinity  --> O(n)
+- d[src] = 0 --> O(1)
+
+- for i = 1 to n-1: --> O(n)
+    - for all edge "e(u, v, w)": --> O(e)
+        //relax edge
+        - if d[u] + w < d[v]: --> O(1)
+            d[v] = d[u] + w --> O(1)
+
+
+- print the distance array "d" --> O(n)
+
+
+Time complexity:
+O(n) + O(1) + O(n*e) + O(n) => O(n*e) or O(v*e) v=nodes and e=edges
+in worse case it is O(n^3)
+so if there is no negative edge no need to use Bellman ford 
+
+
+Space complexity 
+O(n)

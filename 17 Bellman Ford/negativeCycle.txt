@@ -1,0 +1,98 @@
+Bellman ford
+
+Input -> A weighted graph & a src node (with no negative cycles)
+Output -> Shortest distance from src node to all other nodes
+
+- create a distance array "d" with all values to infinity  --> O(n)
+- d[src] = 0 --> O(1)
+
+- negative_cycle = flase
+
+- for i = 1 to n-1: --> O(n)
+    - for all edge "e(u, v, w)": --> O(e)
+        //relax edge
+        - if d[u] + w < d[v]: --> O(1)
+            - d[v] = d[u] + w --> O(1)
+            - if i == n:
+                negative_cycle = true
+
+- print whether negative cycle exists
+- print the distance array "d" --> O(n)
+
+
+Time complexity:
+O(n) + O(1) + O(n*e) + O(n) => O(n*e) or O(v*e) v=nodes and e=edges
+in worse case it is O(n^3)
+so if there is no negative edge no need to use Bellman ford 
+
+
+Space complexity 
+O(n)
+
+
+
+---------------------
+| cycle path print: |
+---------------------
+for cycle path print in Nth iteration which node weight will update thats are cycle node
+negative cycle if exisist, if we track parent of node after a time we always stay in cycle 
+1st choose a node which is update at nth iteration
+so that is a part of cycle or that is connected with cycle
+from that node if we track praent at a time we always stay in the cycle
+if n-1 time we will try to reach in parent, cycle will detacted 
+
+
+
+
+
+Input -> A weighted graph & a src node & distation
+Output -> Shortest distance from src node to all other nodes
+
+- create a distance array "d" with all values to infinity
+- create parent array
+- d[src] = 0
+- parent[src] = -1
+
+- negative_cycle = flase
+- last_updated_node = -1
+
+- for i = 1 to n-1:
+    - for all edge "e(u, v, w)":
+        //relax edge
+        - if d[u] + w < d[v]:
+            - d[v] = d[u] + w
+            - parent[v] = u
+            - if i == n:
+                - negative_cycle = true
+                - last_updated_node = v
+
+- print whether negative cycle exists
+
+- if negative_cycle == flase
+    - print the distance array "d"
+    - selected_node = destination_node
+    - while true:
+        - path.push_back(selected_node)
+        - if selected_node == src : 
+            break
+        - selected_node = parent[selected_node]
+    - reverse the vector path
+    - print the path 
+
+- else:
+    - print negative cycle exists
+    - selected_node = last_updated_node
+    - for i = 0 to n-1 :
+        //after this iteration, granted that now selected_node is a part of cycle so if now we try to print parent we can print path
+        - selected_node = parent[selected_node]
+    - first_node = selected_node
+    - declare a vector "cycle"
+    - cycle.push_back(selected_node)
+    - while true:
+        - selected_node = parent[selected_node]
+        - cycle.push_back(selected_node)
+        - if selected_node == first_node
+            - break
+    - reverse the "cycle" vector
+    - print the cycle
+

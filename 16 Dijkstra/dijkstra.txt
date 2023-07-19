@@ -1,0 +1,3 @@
+-> for negative weighted edge may give wrong result
+-> for negative cycle gives wrong result for shortest path
+-> negative cycle can't find by dijkstra
